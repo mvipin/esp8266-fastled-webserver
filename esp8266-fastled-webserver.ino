@@ -59,15 +59,15 @@ ESP8266HTTPUpdateServer httpUpdateServer;
 
 #include "FSBrowser.h"
 
-#define DATA_PIN      13
+#define DATA_PIN      5
 #define CLK_PIN       14
-#define LED_TYPE      APA102
-#define COLOR_ORDER   BGR
+#define LED_TYPE      WS2812B
+#define COLOR_ORDER   GRB
 #define MatrixWidth   24
 #define MatrixHeight  8
 #define NUM_LEDS      MatrixWidth * MatrixHeight
 
-const bool MatrixSerpentineLayout = true;
+const bool MatrixSerpentineLayout = false;
 
 #define MILLI_AMPS         2000     // IMPORTANT: set the max milli-Amps of your power supply (4A = 4000mA)
 #define FRAMES_PER_SECOND  120 // here you can control the speed. With the Access Point / Web Server the animations run a bit slower.
@@ -301,8 +301,8 @@ void setup() {
   delay(100);
   Serial.setDebugOutput(true);
 
-  //FastLED.addLeds<LED_TYPE, DATA_PIN, COLOR_ORDER>(leds, NUM_LEDS);     // for WS2812 (Neopixel)
-  FastLED.addLeds<LED_TYPE, DATA_PIN, CLK_PIN, COLOR_ORDER>(leds, NUM_LEDS); // for APA102 (Dotstar)
+  FastLED.addLeds<LED_TYPE, DATA_PIN, COLOR_ORDER>(leds, NUM_LEDS);     // for WS2812 (Neopixel)
+  //FastLED.addLeds<LED_TYPE, DATA_PIN, CLK_PIN, COLOR_ORDER>(leds, NUM_LEDS); // for APA102 (Dotstar)
   FastLED.setDither(true);
   FastLED.setCorrection(TypicalLEDStrip);
   FastLED.setBrightness(brightness);
